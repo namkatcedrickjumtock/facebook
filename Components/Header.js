@@ -14,9 +14,11 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 import HeaderIcon from "./HeaderIcons";
-
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
+  const { data: session } = useSession();
+
   return (
     <div className="sticky top-0 bg-white flex items-center p-2 md:px-5 shadow-md">
       {/* left section */}
@@ -42,25 +44,32 @@ export default function Header() {
 
       {/* center section */}
       <div className="flex justify-center flex-grow">
-
         <div className="flex space-x-6 md:space-x-2">
-           <HeaderIcon active Icon={HomeIcon}/>
-           <HeaderIcon Icon={FlagIcon}/>
-           <HeaderIcon Icon={PlayIcon}/>
-           <HeaderIcon Icon={ShoppingCartIcon}/>
-           <HeaderIcon Icon={UserGroupIcon}/>
+          <HeaderIcon active Icon={HomeIcon} />
+          <HeaderIcon Icon={FlagIcon} />
+          <HeaderIcon Icon={PlayIcon} />
+          <HeaderIcon Icon={ShoppingCartIcon} />
+          <HeaderIcon Icon={UserGroupIcon} />
         </div>
       </div>
-
 
       {/* right section */}
       <div className="flex items-center sm:space-x-2 justify-end">
         {/* <Image/> profile pic */}
-        <p className="pr-3 font-semibold whitespace-nowrap">Cedrick Jumtock</p>
-        <ViewGridAddIcon className="icon"/>
-        <ChatIcon className="icon"/>
-        <BellIcon className="icon"/>
-        <ChevronDownIcon className="icon"/>
+        <Image
+          className="rounded-full cursor-pointer"
+          width={40}
+          height={40}
+          alt="profile"
+          src={session.user?.image}
+          layout={"fixed"}
+          onClick={() => signOut()}
+        />
+        <p className="pr-3 font-semibold whitespace-nowrap">{session.user.name}</p>
+        <ViewGridAddIcon className="icon" />
+        <ChatIcon className="icon" />
+        <BellIcon className="icon" />
+        <ChevronDownIcon className="icon" />
       </div>
     </div>
   );
