@@ -65,7 +65,9 @@ export default function Header() {
           layout={"fixed"}
           onClick={() => signOut()}
         />
-        <p className="pr-3 font-semibold whitespace-nowrap">{session.user.name}</p>
+        <p className="pr-3 font-semibold whitespace-nowrap">
+          {session.use?.name}
+        </p>
         <ViewGridAddIcon className="icon" />
         <ChatIcon className="icon" />
         <BellIcon className="icon" />
