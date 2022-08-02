@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const SideBarRow = ({ src, title, Icon }) => {
+const SideBarColumn = ({ src, title, Icon }) => {
   return (
     <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer">
       {src && (
@@ -19,4 +19,4 @@ const SideBarRow = ({ src, title, Icon }) => {
   );
 };
 
-export default SideBarRow;
+export default SideBarColumn;

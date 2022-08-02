@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import Login from "./Login";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
-import { useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 import SidBar from "../Components/SidBar";
 import Feeds from "../Components/Feeds";
 
@@ -30,8 +30,6 @@ export default function Home() {
     </div>
   );
 }
-
-
 
 // Export the `session` prop to use sessions with Server Side Rendering
 export async function getServerSideProps(context) {
