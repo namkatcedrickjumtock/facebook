@@ -30,36 +30,28 @@ export default function InputBox() {
       email: session.user.email,
       PhotoUrl: session.user.image,
       timestamp: serverTimestamp(),
-    }).then((doc) => {
+    }).then((fDoc) => {
       //  upload image ? true
       if (imageToPost) {
-        const storageRef = ref(storage, `posts/${doc.id}`);
-        const uploadTask = uploadString(storageRef, imageToPost, "data_url")
-
-        removeImage();
-
-        // task 3 observers state change, progress and complete in that order.
-        uploadTask.on(
-          "state_changed",
-          // monitors upload progress
-          null,
-          // reurns if there's an error
-          (error) => console.error(error),
-          () => {
-            // Upload completed successfully, now we can get the download URL and save to db
-            getDownloadURL(storageRef).then(async (downloadURL) => {
-              await setDoc(
-                doc(db, "posts", doc.id),
+        const storageRef = ref(storage, `posts/${fDoc.id}`);
+        // const uploadTask =
+        uploadString(storageRef, imageToPost, "data_url")
+          .then((snapShot) => {
+            getDownloadURL(snapShot.ref).then((url) => {
+              setDoc(
+                doc(db, "posts", fDoc.id),
                 {
-                  PostImage: downloadURL,
+                  postImage: url,
                 },
                 { merge: true }
               );
             });
-          }
-        );
+          })
+          .catch((error) => {
+            console.log(`error:${error}`);
+          });
+        removeImage();
       }
-      
     });
 
     inputRef.current.value = "";

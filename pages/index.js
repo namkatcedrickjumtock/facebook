@@ -6,6 +6,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
 import SidBar from "../Components/SidBar";
 import Feeds from "../Components/Feeds";
+import Widgets from "../Components/Widgets";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -26,6 +27,7 @@ export default function Home() {
         {/* feed page */}
         <Feeds />
         {/* widgets */}
+        <Widgets />
       </main>
     </div>
   );
