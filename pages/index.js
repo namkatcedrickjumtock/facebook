@@ -1,40 +1,35 @@
 import Head from "next/head";
-import Image from "next/image";
 import Header from "../Components/Header";
 import Login from "./Login";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import SidBar from "../Components/SidBar";
+import Feeds from "../Components/Feeds";
+import Widgets from "../Components/Widgets";
 
 export default function Home() {
   const { data: session } = useSession();
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
-
   if (!session) {
     return <Login />;
   }
-
   return (
-    <>
+    <div className="h-screen overflow-hidden bg-gray-100">
       <Head>
         <title>Facebook</title>
         <link rel="icon" href="https://links.papareact.com/5me" />
       </Head>
       <Header />
 
-      <main>
+      <main className="flex">
         {/* side bar */}
+        <SidBar />
         {/* feed page */}
+        <Feeds />
         {/* widgets */}
+        <Widgets />
       </main>
-    </>
+    </div>
   );
 }
 
