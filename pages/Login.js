@@ -11,7 +11,7 @@ const Login = () => {
         alt={"profile-pic"}
         src={"https://links.papareact.com/t4i"}
       />
-      <h3 className="tex-center mt-5 bg-blue-400 rounded-full text-white cursor-pointer p-3" onClick={()=>signIn()}>
+      <h3 className="tex-center mt-5 bg-blue-500 rounded-full text-white cursor-pointer p-3" onClick={()=>signIn('facebook')}>
         Login with facebook
       </h3>
     </div>

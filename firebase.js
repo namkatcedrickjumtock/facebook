@@ -13,6 +13,7 @@ const firebaseConfig = {
 };
 
 
+
 // initializing and proctecting the app instance.
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 

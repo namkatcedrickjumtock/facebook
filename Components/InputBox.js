@@ -28,7 +28,6 @@ export default function InputBox() {
       message: inputRef.current.value,
       name: session.user.name,
       email: session.user.email,
-      PhotoUrl: session.user.image,
       timestamp: serverTimestamp(),
     }).then((fDoc) => {
       //  upload image ? true

@@ -1,16 +1,18 @@
-import { collection, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import Post from "./Post";
 
-const Posts = () => {
+const Posts = ({ postResponse }) => {
+  const { data: session } = useSession();
   const [realTimePost, loading, error] = useCollection(
-    query(collection(db, "posts"), orderBy("timestamp", "desc"))
+    collection(db, "posts"),
+    where("email", "==", session.user.email),
+    orderBy("timestamp", "desc")
   );
-  console
-    .log
-    // realTimePost?.docs.map((doc) => console.log(doc.data().timestamp))
-    ();
+
+  console.log(postResponse);
 
   return (
     <div>
@@ -19,9 +21,7 @@ const Posts = () => {
           key={post.id}
           name={post.data().name}
           message={post.data().message}
-          email={post.data().email}
           timestamp={post.data().timestamp}
-          image={post.data().PhotoUrl}
           postImage={post.data().postImage}
         />
       ))}
@@ -30,3 +30,21 @@ const Posts = () => {
 };
 
 export default Posts;
+
+export const getServerSideProps = async () => {
+  const querySnapShot = query(
+    collection(db, "posts"),
+    where("email", "==", session.user.email),
+    orderBy("timestamp", "desc")
+  );
+
+  const postResponse = await getDocs(querySnapShot).then((res) =>
+    postDoc.docs.map((postDoc) => (postDoc.id, postDoc.data()))
+  );
+  console.log(postResponse);
+  return {
+    props: {
+      ...postResponse,
+    },
+  };
+};

@@ -1,12 +1,15 @@
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-const Post = ({ name, message, postImage, image, timestamp }) => {
+const Post = ({ name, message, postImage, timestamp }) => {
+  const { data: session } = useSession();
   return (
+
     <div className="flex flex-col">
       <div className="p-5 bg-white mt-5 rounded-t-2xl shadow-sm ">
         <div className="flex items-center space-x-2">
-          <Image alt="pic" src={image} height={40} width={40} />
+          <Image alt="pic" src={session?.user.image} height={40} width={40} />
           <div>
             <p className="font-medium">{name}</p>
             <p className="text-xs text-gray-400">
