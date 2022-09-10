@@ -12,9 +12,9 @@ import { db } from "../firebase";
 
 export default function Home() {
   const { data: session } = useSession();
-  if (!session) {
-    return <Login />;
-  }
+  // if (!session) {
+  //   return <Login />;
+  // }
 
   return (
     <div className="h-screen overflow-hidden bg-gray-100">
