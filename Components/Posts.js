@@ -31,20 +31,20 @@ const Posts = ({ postResponse }) => {
 
 export default Posts;
 
-export const getServerSideProps = async () => {
-  const querySnapShot = query(
-    collection(db, "posts"),
-    where("email", "==", session.user.email),
-    orderBy("timestamp", "desc")
-  );
+// export const getServerSideProps = async () => {
+//   const querySnapShot = query(
+//     collection(db, "posts"),
+//     where("email", "==", session.user.email),
+//     orderBy("timestamp", "desc")
+//   );
 
-  const postResponse = await getDocs(querySnapShot).then((res) =>
-    postDoc.docs.map((postDoc) => (postDoc.id, postDoc.data()))
-  );
-  console.log(postResponse);
-  return {
-    props: {
-      ...postResponse,
-    },
-  };
-};
+//   const postResponse = await getDocs(querySnapShot).then((res) =>
+//     postDoc.docs.map((postDoc) => (postDoc.id, postDoc.data()))
+//   );
+//   console.log(postResponse);
+//   return {
+//     props: {
+//       ...postResponse,
+//     },
+//   };
+// };

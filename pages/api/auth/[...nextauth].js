@@ -1,10 +1,5 @@
 import NextAuth from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
-import GoogleProvider from "next-auth/providers/google";
-import GithubProvider from "next-auth/providers/github";
-import TwitterProvider from "next-auth/providers/twitter";
-import Auth0Provider from "next-auth/providers/auth0";
-import "dotenv/config";
 
 export const authOptions = {
   // https://next-auth.js.org/configuration/providers/oauth

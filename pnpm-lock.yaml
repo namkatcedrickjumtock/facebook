@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@heroicons/react': ^1.0.6
   autoprefixer: ^10.4.7
-  dotenv: ^14.3.2
   eslint: 8.20.0
   eslint-config-next: 12.2.3
   firebase: ^9.9.1
@@ -28,7 +27,6 @@ dependencies:
 
 devDependencies:
   autoprefixer: 10.4.7_postcss@8.4.14
-  dotenv: 14.3.2
   eslint: 8.20.0
   eslint-config-next: 12.2.3_3untclzmr2qxcnxpjiv6c4zk3u
   postcss: 8.4.14
@@ -1238,11 +1236,6 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       esutils: 2.0.3
-    dev: true
-
-  /dotenv/14.3.2:
-    resolution: {integrity: sha512-vwEppIphpFdvaMCaHfCEv9IgwcxMljMw2TnAQBB4VWPvzXQLTb82jwmdOKzlEVUL3gNFT4l4TPKO+Bn+sqcrVQ==}
-    engines: {node: '>=12'}
     dev: true
 
   /electron-to-chromium/1.4.199:
